@@ -2,23 +2,67 @@
 <html>
 <head>
 <style>
-body {
-  background-color: #000
+html { 
+  background: url(images/bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
+body{
+	color: #FFFFFF;
+	font-family: sans-serif; 
+}
+
+div{
+	display: block;
+}
+
+p{
+	font-size: 1.5em;
+}
+
+
+.practice{
+position: fixed;
+bottom: 30px;
+left: 30px;
+<!-- width: 50%; -->
+}
+
+.github{
+position: fixed;
+bottom: 140px;
+left: 30px;
+height: 30px;
+}
+
 
 .tagcloud {
     font-family: sans-serif;  
-    font-size: 20px;
+    font-size: 130%;
     margin: auto;
-    width: 50%;
-  }
-  .tagcloud--item:hover {
-    color: #36454F;
-  }
+	top: 10%;
+	position: fixed !important;
+	left: 6%;
+}
 </style>
 </head>
 <body>
-<span class="content"></span>
+
+
+
+	<span class="content"></span>
+
+
+<div class="github">
+<p>Infos über mich finden sie hier:</p>
+<a href="https://www.xing.com/profile/Matthias_Abele" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="images/xing.png" alt="Xing profile" /></a>
+	<a href="https://github.com/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30"src="https://img.icons8.com/fluency/48/000000/github.png" alt="GitHub" /></a>
+	<a href="https://www.codewars.com/users/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="https://www.codewars.com/users/Blune/badges/micro" alt="Top500 player of codewars" /></a>
+</div>
+
 </body>
 </html>
 
@@ -32,13 +76,13 @@ body {
     'Javascript', 'HTML', 'PWA',
     'MSSQL', 'DevOps', 'GIT',
     'Agile', 'TDD', 'Clean Code',
-    'Architecture', 'Quality', '.Net',
+    'Architecture', 'Quality', '.Net', 'Java', 'Arduino'
 ];
 
 var tagCloud = TagCloud('.content', myTags,{
 
   // radius in px
-  radius: 250,
+  radius: document.body.clientWidth / 5,
 
   // animation speed
   // slow, normal, fast
@@ -58,5 +102,5 @@ var tagCloud = TagCloud('.content', myTags,{
 //To change the color of text randomly
 var colors = ['#34A853', '#FBBC05', '#4285F4', '#7FBC00', 'FFBA01', '01A6F0'];
 var random_color = colors[Math.floor(Math.random() * colors.length)];
-document.querySelector('.content').style.color = random_color;
+document.querySelector('.content').style.color = '#FFFFFF';
 </script>
