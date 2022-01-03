@@ -23,25 +23,16 @@ p{
 	font-size: 1.5em;
 }
 
-
-.practice{
-position: fixed;
-bottom: 30px;
-left: 30px;
-<!-- width: 50%; -->
-}
-
-.github{
+.info{
 position: fixed;
 bottom: 140px;
 left: 30px;
 height: 30px;
 }
 
-
 .tagcloud {
     font-family: sans-serif;  
-    font-size: 130%;
+    font-size: 150%;
     margin: auto;
 	top: 10%;
 	position: fixed !important;
@@ -50,59 +41,52 @@ height: 30px;
 </style>
 </head>
 <body>
-
-
-
 	<span class="content"></span>
-
-
-<div class="github">
-<p>Infos über mich finden sie hier:</p>
-<a href="https://www.xing.com/profile/Matthias_Abele" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="images/xing.png" alt="Xing profile" /></a>
-	<a href="https://github.com/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30"src="https://img.icons8.com/fluency/48/000000/github.png" alt="GitHub" /></a>
-	<a href="https://www.codewars.com/users/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="https://www.codewars.com/users/Blune/badges/micro" alt="Top500 player of codewars" /></a>
-</div>
-
+	<div class="info">
+	<p>Infos über mich finden Sie hier:</p>
+		<a href="https://www.codewars.com/users/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="https://www.codewars.com/users/Blune/badges/micro" alt="Top500 player of codewars" /></a>
+		<a href="https://github.com/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30"src="images/github.png" alt="GitHub" /></a>
+		<a href="https://www.xing.com/profile/Matthias_Abele" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="images/xing2.png" alt="Xing profile" /></a>
+	</div>
 </body>
 </html>
 
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js"> </script>
 <script src="https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js"> </script>
 <script>
-  const myTags = [
-    'C#', 'F#', 'Powershell',
-    'Javascript', 'HTML', 'PWA',
-    'MSSQL', 'DevOps', 'GIT',
-    'Agile', 'TDD', 'Clean Code',
-    'Architecture', 'Quality', '.Net', 'Java', 'Arduino'
-];
+window.onresize = reportWindowSize;
+var globe = drawTagGlobe();
 
-var tagCloud = TagCloud('.content', myTags,{
+function reportWindowSize() {
+  globe.destroy();
+  globe = drawTagGlobe();
+}
 
-  // radius in px
+function drawTagGlobe() {
+	
+	  const myTags = [
+		'C#', 'F#', 'Powershell',
+		'Javascript', 'PWA',
+		'MSSQL', 'DevOps', 'GIT',
+		'Agile', 'TDD', 'Clean Code',
+		'Architecture', 'Quality', '.Net', 'Java', 'Arduino'
+	];
+	
+	var height = Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+	var width = document.body.clientWidth;
+	var tagCloud = TagCloud('.content', myTags,{
+	  // radius in px
 
-  radius: Math.min(document.body.clientWidth / 5, Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight ) / 2.5),
+	  radius: Math.min(width / 5, height / 2.5),
 
-  // animation speed
-  // slow, normal, fast
-  maxSpeed: 'normal',
-  initSpeed: 'normal',
+	  // animation speed	  
+	  maxSpeed: 'normal', // slow, normal, fast
+	  initSpeed: 'normal', // slow, normal, fast
+	  direction: 135, // 0 = top, 90 = left, 135 = right-bottom
+	  keep: true// interact with cursor move on mouse out
+	  
+	});
 
-  // 0 = top
-  // 90 = left
-  // 135 = right-bottom
-  direction: 135,
-  
-  // interact with cursor move on mouse out
-  keep: true
-  
-});
-
-//To change the color of text randomly
-var colors = ['#34A853', '#FBBC05', '#4285F4', '#7FBC00', 'FFBA01', '01A6F0'];
-var random_color = colors[Math.floor(Math.random() * colors.length)];
-document.querySelector('.content').style.color = '#FFFFFF';
+	document.querySelector('.content').style.color = '#FFFFFF';
+	return tagCloud;
+}
 </script>
