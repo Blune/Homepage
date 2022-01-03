@@ -70,6 +70,7 @@ height: 30px;
 
 
 <script src="https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js"> </script>
+<script src="https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js"> </script>
 <script>
   const myTags = [
     'C#', 'F#', 'Powershell',
@@ -82,12 +83,13 @@ height: 30px;
 var tagCloud = TagCloud('.content', myTags,{
 
   // radius in px
-  radius: document.body.clientWidth / 5,
+
+  radius: Math.min(document.body.clientWidth / 5, Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight ) / 2.5),
 
   // animation speed
   // slow, normal, fast
-  maxSpeed: 'fast',
-  initSpeed: 'fast',
+  maxSpeed: 'normal',
+  initSpeed: 'normal',
 
   // 0 = top
   // 90 = left
