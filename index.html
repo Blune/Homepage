@@ -61,6 +61,34 @@ height: 30px;
 window.onresize = reportWindowSize;
 var globe = drawTagGlobe();
 
+let rootEl = document.querySelector('.content');
+rootEl.addEventListener('click', function clickEventHandler(e) {
+    if (e.target.className === 'tagcloud--item') {
+		var keyword = "";
+		if(e.target.innerText === '.Net') keyword = '.NET';
+		else if(e.target.innerText === 'C#') keyword = 'C_Sharp_(programming_language)';
+		else if(e.target.innerText === 'F#') keyword = 'F_Sharp_(programming_language)';
+		else if(e.target.innerText === 'PowerShell') keyword = 'PowerShell';
+		else if(e.target.innerText === 'JavaScript') keyword = 'JavaScript';
+		else if(e.target.innerText === 'PWA') keyword = 'Progressive_web_application';
+		else if(e.target.innerText === 'MS SQL') keyword = 'Microsoft_SQL_Server';
+		else if(e.target.innerText === 'DevOps') keyword = 'DevOps';
+		else if(e.target.innerText === 'GIT') keyword = 'Git';
+		else if(e.target.innerText === 'Agile') keyword = 'Agile_software_development';
+		else if(e.target.innerText === 'TDD') keyword = 'Test-driven_development';
+		else if(e.target.innerText === 'Clean Code') keyword = 'Robert_C._Martin';
+		else if(e.target.innerText === 'Architecture') keyword = 'Software_architecture';
+		else if(e.target.innerText === 'Quality') keyword = 'Software_quality';
+		else if(e.target.innerText === '.Net') keyword = '.NET';
+		else if(e.target.innerText === 'Java') keyword = 'Java_(programming_language)';
+		else if(e.target.innerText === 'Arduino') keyword = 'Arduino';
+		else if(e.target.innerText === 'OOP') keyword = 'Object-oriented_programming';
+		else if(e.target.innerText === 'FP') keyword = 'Functional_programming';
+        window.open('https://en.wikipedia.org/wiki/'+ keyword, '_blank');
+        // your code here
+    }
+});
+
 function reportWindowSize() {
   globe.destroy();
   globe = drawTagGlobe();
@@ -69,9 +97,9 @@ function reportWindowSize() {
 function drawTagGlobe() {
 	
 	  const myTags = [
-		'C#', 'F#', 'Powershell',
-		'Javascript', 'PWA',
-		'MSSQL', 'DevOps', 'GIT',
+		'C#', 'F#', 'PowerShell',
+		'JavaScript', 'PWA', 'OOP', 'FP',
+		'MS SQL', 'DevOps', 'GIT',
 		'Agile', 'TDD', 'Clean Code',
 		'Architecture', 'Quality', '.Net', 'Java', 'Arduino'
 	];
