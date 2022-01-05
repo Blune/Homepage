@@ -3,15 +3,15 @@
 <head>
 <style>
 html { 
-  background: url(images/bg.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  	background: url(images/bg.jpg) no-repeat center center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
 }
 
 html{
-  height: 100%;
+	height: 100%;
 }
 
 body{
@@ -25,7 +25,6 @@ body{
 	margin-left: 10px;
 	margin-bottom: 10px;
 	height: 100%;
-	min-height: 100%;
 	align-content: stretch;
 	align-items: center;
 	float: left;
@@ -45,20 +44,19 @@ body{
 .quote{
 	font-style: italic;
 	font-size: 1.5em;
+	flex-grow: 1;
 }
 
 .info{
 	font-size: 1.5em;
-	align-self: flex-end;
-	position: fixed;
-	bottom: 30px;
-	left: 10px;
+	align-self: flex-start;
+	flex-shrink: 0;
 }
 
 .tagcloud {
     font-family: sans-serif;  
     font-size: 150%;
-
+	flex-grow: 1;
 }
 
 .tagcloud--item {
@@ -81,8 +79,6 @@ body{
 			<a href="https://www.xing.com/profile/Matthias_Abele" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="images/xing.png" alt="XING profile" /></a>
 		</div>
 	</div>
-	
-	
 </body>
 </html>
 
@@ -91,7 +87,6 @@ body{
 window.onresize = reportWindowSize;
 var globe = drawTagGlobe();
 setupQuotesOnClick();
-
 
 function setupQuotesOnClick(){
 	let rootEl = document.querySelector('.content');
@@ -143,15 +138,12 @@ function drawTagGlobe() {
 	var width = document.body.clientWidth;
 	var tagCloud = TagCloud('.content', myTags,{
 	  // radius in px
-
 	  radius: Math.min(width / 5, height / 3),
-
 	  // animation speed	  
 	  maxSpeed: 'normal', // slow, normal, fast
 	  initSpeed: 'normal', // slow, normal, fast
 	  direction: 135, // 0 = top, 90 = left, 135 = right-bottom
 	  keep: true// interact with cursor move on mouse out
-	  
 	});
 
 	document.querySelector('.content').style.color = '#FFFFFF';
