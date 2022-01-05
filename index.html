@@ -10,67 +10,79 @@ html {
   background-size: cover;
 }
 
+html{
+  height: 100%;
+}
+
 body{
 	color: #FFFFFF;
 	font-family: sans-serif; 
+	margin: 0px;
+	height: 100%;
 }
 
-div{
-	display: block;
-}
-
-span{
-	display: inline-block;
-    vertical-align: top;
-}
-
-p{
-	font-size: 1.5em;
-	width: 500px;
+.flex-container{
+	margin-left: 10px;
+	margin-bottom: 10px;
+	height: 100%;
+	min-height: 100%;
+	align-content: stretch;
+	align-items: center;
+	float: left;
+	justify-content: flex-start;
+	flex-direction: column;
+	width: 50%;
+  
+	-ms-box-orient: vertical;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: flex;
 }
 
 .quote{
-	position: fixed;
-	bottom: 350px;
-	left: 30px;
-	height: 30px;
-	width: 30%;
+	font-style: italic;
+	font-size: 1.5em;
 }
 
 .info{
-position: fixed;
-bottom: 140px;
-left: 30px;
-height: 30px;
+	font-size: 1.5em;
+	align-self: flex-end;
+	position: fixed;
+	bottom: 30px;
+	left: 10px;
 }
 
 .tagcloud {
     font-family: sans-serif;  
     font-size: 150%;
-    margin: auto;
-	top: 0px;
-	position: fixed !important;
-	left: 6%;
+
 }
 
 .tagcloud--item {
-            padding: 2px 4px;
-            background-color: transparent;
-            border: 1px solid transparent;
-            cursor: pointer;
-        }
+	padding: 2px 4px;
+	background-color: transparent;
+	border: 1px solid transparent;
+	cursor: pointer;
+}
 
 </style>
 </head>
 <body>
-	<span class="content"></span>
-	<p  class="quote" id="quote"><i>&quot;It's a pleasure to meet you! Please click on my skills to get some insights about my knowledge.&quot;</i></p>
-	<div class="info">
-	<p>Find more information about me on:</p>
-		<a href="https://www.codewars.com/users/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="https://www.codewars.com/users/Blune/badges/micro" alt="Top500 player of codewars" /></a>
-		<a href="https://github.com/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30"src="images/github.png" alt="GitHub" /></a>
-		<a href="https://www.xing.com/profile/Matthias_Abele" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="images/xing.png" alt="XING profile" /></a>
+	<div class="flex-container">
+		<div class="content"></div>
+		<div class="quote" id="quote">&quot;It's a pleasure to meet you! Please click on my interests and skills to get more information.&quot;</div>
+		<div class="info">Find more information about me on:
+			<br>
+			<a href="https://www.codewars.com/users/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="https://www.codewars.com/users/Blune/badges/micro" alt="Top500 player of codewars" /></a>
+			<a href="https://github.com/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30"src="images/github.png" alt="GitHub" /></a>
+			<a href="https://www.xing.com/profile/Matthias_Abele" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="images/xing.png" alt="XING profile" /></a>
+		</div>
 	</div>
+	
+	
 </body>
 </html>
 
@@ -89,8 +101,8 @@ function setupQuotesOnClick(){
 			if(e.target.innerText === '.Net') keyword = 'With 10 years experience in .NET I used a lot of the framework functionality. Ask me for my desktop, mobile and web development projects.';
 			else if(e.target.innerText === 'C#') keyword = 'My main programming language for the last 10 years. If you want to see my code check my solutions as one of the top players on codewars.';
 			else if(e.target.innerText === 'F#') keyword = 'I would not say that I have mastered this language but I learned and understood the functional concepts which also changed my way of programming.';
-			else if(e.target.innerText === 'PowerShell') keyword = 'Everyone should be able to automate daily business or code quality checks so that software can be delivered faster and with better quality.';
-			else if(e.target.innerText === 'JavaScript') keyword = 'If you want to share a prototype fast there is no way around Javascript. See this website for example.';
+			else if(e.target.innerText === 'PowerShell') keyword = 'I learned PowerShell because I think everyone should be able to automate daily business or code quality checks so that software can be delivered faster and with better quality.';
+			else if(e.target.innerText === 'JavaScript') keyword = 'I learned the fundamentals of JavaScript because there is no faster way to create simple and sharable prototypes. See this website for example.';
 			else if(e.target.innerText === 'Java') keyword = 'Java was my first programming language which a also used in my first job.';
 			
 			else if(e.target.innerText === 'PWA') keyword = 'I experimented with progressive web applications for my own applications and I loved the simplicity and publishing speed.';
@@ -106,9 +118,7 @@ function setupQuotesOnClick(){
 			else if(e.target.innerText === 'Arduino') keyword = 'If you are missing some gadget in your life then try build it! Feel free to ask for my personal projects when you meet me!';
 			else if(e.target.innerText === 'OOP') keyword = 'Object oriented programming is the most used programming paradigm and of course I know the patterns.';
 			else if(e.target.innerText === 'FP') keyword = 'Functional programming is not used that often sadly but unbeatable if you want to show a straight forward workflow.';
-			<!-- window.open('https://en.wikipedia.org/wiki/'+ keyword, '_blank'); -->
-			// your code here
-			
+
 			document.getElementById("quote").innerHTML = "<i>&quot;" + keyword + "&quot;</i>";
 		}
 	});
