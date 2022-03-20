@@ -136,13 +136,12 @@ function setupQuotesOnClick(){
 			else if(e.target.innerText === 'OOP') keyword = 'Object oriented programming is the most used programming paradigm and of course I know the patterns.';
 			else if(e.target.innerText === 'FP') keyword = 'Functional programming is not used that often sadly but it is unbeatable if you want to show a straight forward workflow.';
 
-			document.getElementById("quote").innerHTML = "<i>&quot;" + keyword + "&quot;</i>";
+			let quote = document.getElementById("quote");
+			quote.innerHTML = "<i>&quot;" + keyword + "&quot;</i>";
 			
-			document.getAnimations().forEach((anim) => 
-			{
-			    anim.cancel();
-			    anim.play();
-			});
+			quote.style.animation = 'none';
+  			quote.offsetHeight;
+  			quote.style.animation = null; 
 		}
 	});
 }
