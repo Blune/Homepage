@@ -1,153 +1,182 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-<style>
-html { 
-  	background: url(images/bg2.jpg) no-repeat center center fixed; 
-  	-webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
-  	background-size: cover;
-}
+	<style>
+		html {
+			background: url(images/bg2.jpg) no-repeat center center fixed;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
 
-html{
-	height: 100%;
-}
+		html {
+			height: 100%;
+		}
 
-body{
-	color: #FFFFFF;
-	font-family: sans-serif; 
-	margin: 0px;
-	height: 100%;
-}
+		body {
+			color: #FFFFFF;
+			font-family: sans-serif;
+			margin: 0px;
+			height: 100%;
+		}
 
-.flex-container{
-	margin-left: 10px;
-	margin-bottom: 10px;
-	height: 100%;
-	align-content: stretch;
-	align-items: center;
-	float: left;
-	justify-content: flex-start;
-	flex-direction: column;
-	width: 50%;
-  
-	-ms-box-orient: vertical;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -moz-flex;
-	display: -webkit-flex;
-	display: flex;
-}
+		.flex-container {
+			margin-left: 10px;
+			margin-bottom: 10px;
+			height: 100%;
+			align-content: stretch;
+			align-items: center;
+			float: left;
+			justify-content: flex-start;
+			flex-direction: column;
+			width: 50%;
 
-.quote{
-	font-style: italic;
-	font-size: 1.5em;
-	flex-grow: 1;
-}
+			-ms-box-orient: vertical;
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: -moz-flex;
+			display: -webkit-flex;
+			display: flex;
+		}
 
-.info{
-	font-size: 1.5em;
-	align-self: flex-start;
-	flex-shrink: 0;
-}
+		.quote {
+			font-style: italic;
+			font-size: 1.5em;
+			flex-grow: 1;
+		}
 
-.tagcloud {
-    font-family: sans-serif;  
-    font-size: 150%;
-	flex-grow: 1;
-}
+		.info {
+			font-size: 1.5em;
+			align-self: flex-start;
+			flex-shrink: 0;
+		}
 
-.tagcloud--item {
-	padding: 2px 4px;
-	background-color: transparent;
-	border: 1px solid transparent;
-	cursor: pointer;
-}
+		.tagcloud {
+			font-family: sans-serif;
+			font-size: 150%;
+			flex-grow: 1;
+		}
 
-</style>
+		.tagcloud--item {
+			padding: 2px 4px;
+			background-color: transparent;
+			border: 1px solid transparent;
+			cursor: pointer;
+		}
+	</style>
 </head>
+
 <body>
 	<div class="flex-container">
 		<div class="content"></div>
-		<div class="quote" id="quote">&quot;It's a pleasure to meet you! Please click on my interests and skills to get more information.&quot;</div>
+		<div class="quote" id="quote"></div>
 		<div class="info">Find more information about me on:
 			<br>
-			<a href="https://www.codewars.com/users/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="https://www.codewars.com/users/Blune/badges/micro" alt="Top500 player of codewars" /></a>
-			<a href="https://github.com/Blune" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30"src="images/github.png" alt="GitHub" /></a>
-			<a href="https://www.xing.com/profile/Matthias_Abele" target="_blank" data-wpel-link="external" rel="external noopener noreferrer"><img height="30" src="images/xing.png" alt="XING profile" /></a>
+			<a href="https://www.codewars.com/users/Blune" target="_blank" data-wpel-link="external"
+				rel="external noopener noreferrer"><img height="30"
+					src="https://www.codewars.com/users/Blune/badges/micro" alt="Top500 player of codewars" /></a>
+			<a href="https://github.com/Blune" target="_blank" data-wpel-link="external"
+				rel="external noopener noreferrer"><img height="30" src="images/github.png" alt="GitHub" /></a>
+			<a href="https://www.xing.com/profile/Matthias_Abele" target="_blank" data-wpel-link="external"
+				rel="external noopener noreferrer"><img height="30" src="images/xing.png" alt="XING profile" /></a>
 		</div>
 	</div>
 </body>
+
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js"> </script>
 <script>
-window.onresize = reportWindowSize;
-var globe = drawTagGlobe();
-setupQuotesOnClick();
+	window.onresize = reportWindowSize;
+	var globe = drawTagGlobe();
+	setupQuotesOnClick();
 
-function setupQuotesOnClick(){
-	let rootEl = document.querySelector('.content');
-	rootEl.addEventListener('click', function clickEventHandler(e) {
-		if (e.target.className === 'tagcloud--item') {
+	var textToType = '';
+	typingEffect = 0;
+	var i = 0;
+	var speed = 40;
+	startTypingIntoQuote("It's a pleasure to meet you! Please click on my interests and skills to get more information");
+
+	function setupQuotesOnClick() {
+		let rootEl = document.querySelector('.content');
+		rootEl.addEventListener('click', function clickEventHandler(e) {
 			var keyword = "";
-			if(e.target.innerText === '.Net') keyword = 'With 10 years experience in .NET I used a lot of the framework functionality. Ask me for my desktop, mobile and web development projects.';
-			else if(e.target.innerText === 'C#') keyword = 'My main programming language for the last 10 years. If you want to see my code check my solutions as one of the top players on codewars.';
-			else if(e.target.innerText === 'F#') keyword = 'I would not say that I have mastered this language but I learned and understood the functional concepts which also changed my way of programming.';
-			else if(e.target.innerText === 'PowerShell') keyword = 'I learned PowerShell because I think everyone should be able to automate daily business or code quality checks so that software can be delivered faster and with better quality.';
-			else if(e.target.innerText === 'JavaScript') keyword = 'I learned the fundamentals of JavaScript because there is no faster way to create simple and sharable prototypes. See this website for example.';
-			else if(e.target.innerText === 'Java') keyword = 'Java was my first programming language which I also used in my first job.';
-			
-			else if(e.target.innerText === 'PWA') keyword = 'I experimented with progressive web applications for my own applications and I loved the simplicity and publishing speed.';
-			else if(e.target.innerText === 'MS SQL') keyword = 'Since a lot of applications are using relational databases I also know how to store and query the data';
-			else if(e.target.innerText === 'DevOps') keyword = 'If you are running the application that you have built then you also try to keep it simple and highly automated.';
-			else if(e.target.innerText === 'GIT') keyword = 'There are no mistakes if you can revert them. But therefor you need to be able to jump back to that point anytime.';
-			else if(e.target.innerText === 'Agile') keyword = 'I prefer fast feedback by prototypes to check if it matches the customer needs instead of delivering something like it was planned.';
-			else if(e.target.innerText === 'TDD') keyword = 'How can you quarantee that your code still works if you cannot validate that in seconds?';
-			else if(e.target.innerText === 'Clean Code') keyword = 'Let the code speak for itself instead of deprecated documentation or comments. Clean code should tell you obviously what it does.';
-			else if(e.target.innerText === 'Architecture') keyword = 'To be able to adapt your code fast you also need to know the big picture with its clear responsibilities.';
-			else if(e.target.innerText === 'Quality') keyword = 'Code is not finished when it seems to do what it is supposed to do. I personally love to simplify code when tests are existing for the functionality and checking its quality with linters, code coverage tools, etc.';
-			
-			else if(e.target.innerText === 'Arduino') keyword = 'If you are missing some gadget in your life then try to build it! Feel free to ask me for my personal projects when you meet me!';
-			else if(e.target.innerText === 'OOP') keyword = 'Object oriented programming is the most used programming paradigm and of course I know the patterns.';
-			else if(e.target.innerText === 'FP') keyword = 'Functional programming is not used that often sadly but it is unbeatable if you want to show a straight forward workflow.';
+			if (e.target.className === 'tagcloud--item') {
+				if (e.target.innerText === '.Net') keyword = 'With 10 years experience in .NET I used a lot of the framework functionality. Ask me for my desktop, mobile and web development projects.';
+				else if (e.target.innerText === 'C#') keyword = 'My main programming language for the last 10 years. If you want to see my code check my solutions as one of the top players on codewars.';
+				else if (e.target.innerText === 'F#') keyword = 'I would not say that I have mastered this language but I learned and understood the functional concepts which also changed my way of programming.';
+				else if (e.target.innerText === 'PowerShell') keyword = 'I learned PowerShell because I think everyone should be able to automate daily business or code quality checks so that software can be delivered faster and with better quality.';
+				else if (e.target.innerText === 'JavaScript') keyword = 'I learned the fundamentals of JavaScript because there is no faster way to create simple and sharable prototypes. See this website for example.';
+				else if (e.target.innerText === 'Java') keyword = 'Java was my first programming language which I also used in my first job.';
 
-			document.getElementById("quote").innerHTML = "<i>&quot;" + keyword + "&quot;</i>";
+				else if (e.target.innerText === 'PWA') keyword = 'I experimented with progressive web applications for my own applications and I loved the simplicity and publishing speed.';
+				else if (e.target.innerText === 'MS SQL') keyword = 'Since a lot of applications are using relational databases I also know how to store and query the data';
+				else if (e.target.innerText === 'DevOps') keyword = 'If you are running the application that you have built then you also try to keep it simple and highly automated.';
+				else if (e.target.innerText === 'GIT') keyword = 'There are no mistakes if you can revert them. But therefor you need to be able to jump back to that point anytime.';
+				else if (e.target.innerText === 'Agile') keyword = 'I prefer fast feedback by prototypes to check if it matches the customer needs instead of delivering something like it was planned.';
+				else if (e.target.innerText === 'TDD') keyword = 'How can you quarantee that your code still works if you cannot validate that in seconds?';
+				else if (e.target.innerText === 'Clean Code') keyword = 'Let the code speak for itself instead of deprecated documentation or comments. Clean code should tell you obviously what it does.';
+				else if (e.target.innerText === 'Architecture') keyword = 'To be able to adapt your code fast you also need to know the big picture with its clear responsibilities.';
+				else if (e.target.innerText === 'Quality') keyword = 'Code is not finished when it seems to do what it is supposed to do. I personally love to simplify code when tests are existing for the functionality and checking its quality with linters, code coverage tools, etc.';
+
+				else if (e.target.innerText === 'Arduino') keyword = 'If you are missing some gadget in your life then try to build it! Feel free to ask me for my personal projects when you meet me!';
+				else if (e.target.innerText === 'OOP') keyword = 'Object oriented programming is the most used programming paradigm and of course I know the patterns.';
+				else if (e.target.innerText === 'FP') keyword = 'Functional programming is not used that often sadly but it is unbeatable if you want to show a straight forward workflow.';
+
+				//document.getElementById("quote").innerHTML = "<i>&quot;" + keyword + "&quot;</i>";
+				startTypingIntoQuote(keyword);
+			}
+		});
+	}
+
+	function reportWindowSize() {
+		globe.destroy();
+		globe = drawTagGlobe();
+	}
+
+	function drawTagGlobe() {
+
+		const myTags = [
+			'C#', 'F#', 'PowerShell',
+			'JavaScript', 'PWA', 'OOP', 'FP',
+			'MS SQL', 'DevOps', 'GIT',
+			'Agile', 'TDD', 'Clean Code',
+			'Architecture', 'Quality', '.Net', 'Java', 'Arduino'
+		];
+
+		var height = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+		var width = document.body.clientWidth;
+		var tagCloud = TagCloud('.content', myTags, {
+			// radius in px
+			radius: Math.min(width / 5, height / 3),
+			// animation speed	  
+			maxSpeed: 'normal', // slow, normal, fast
+			initSpeed: 'normal', // slow, normal, fast
+			direction: 135, // 0 = top, 90 = left, 135 = right-bottom
+			keep: true// interact with cursor move on mouse out
+		});
+
+		document.querySelector('.content').style.color = '#FFFFFF';
+		return tagCloud;
+	}
+
+
+	function startTypingIntoQuote(text) {
+		textToType = text;
+		document.getElementById("quote").innerHTML = "";
+		i = 0;
+		clearTimeout(typingEffect);
+		typeWriter();
+	}
+
+	function typeWriter() {
+		if (i < textToType.length) {
+			document.getElementById("quote").innerHTML += textToType.charAt(i);
+			i++;
+			typingEffect = setTimeout(typeWriter, 40);
 		}
-	});
-}
-
-function reportWindowSize() {
-  globe.destroy();
-  globe = drawTagGlobe();
-}
-
-function drawTagGlobe() {
-	
-	  const myTags = [
-		'C#', 'F#', 'PowerShell',
-		'JavaScript', 'PWA', 'OOP', 'FP',
-		'MS SQL', 'DevOps', 'GIT',
-		'Agile', 'TDD', 'Clean Code',
-		'Architecture', 'Quality', '.Net', 'Java', 'Arduino'
-	];
-	
-	var height = Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
-	var width = document.body.clientWidth;
-	var tagCloud = TagCloud('.content', myTags,{
-	  // radius in px
-	  radius: Math.min(width / 5, height / 3),
-	  // animation speed	  
-	  maxSpeed: 'normal', // slow, normal, fast
-	  initSpeed: 'normal', // slow, normal, fast
-	  direction: 135, // 0 = top, 90 = left, 135 = right-bottom
-	  keep: true// interact with cursor move on mouse out
-	});
-
-	document.querySelector('.content').style.color = '#FFFFFF';
-	return tagCloud;
-}
+	}
 </script>
